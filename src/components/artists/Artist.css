@@ -1,0 +1,55 @@
+.artist-view {
+    text-align: center;
+    font-family: Quicksand, serif;
+}
+
+.options-container {
+    width: 90%;
+    display: flex;
+    justify-content: right;
+}
+
+.button-container button{
+    margin: 20px;
+}
+
+.artist-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:left;
+    margin: 20px;
+}
+
+.artist-card{
+    margin: 10px;
+}
+
+.artist-img-container{
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.artist-img-container img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.details-img-container{
+    width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.details-img-container img{
+    width: 500px;
+    height: 400px;
+    object-fit: cover;
+    object-position:0% 40%;
+}
+

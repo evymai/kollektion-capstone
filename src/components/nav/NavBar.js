@@ -13,7 +13,7 @@ export const NavBar = () => {
 				<Link className="navbar-link" to="/photocards">Photocards</Link>
             </li>
             <li className="navbar-item">
-				<Link className="navbar-link" to="/">Photocard Collection</Link>
+				<Link className="navbar-link" to="/myPhotocards">My Photocards</Link>
 			</li>
 			{localStorage.getItem("kollektion_user") ? (
 				<li className="navbar-item navbar-logout">

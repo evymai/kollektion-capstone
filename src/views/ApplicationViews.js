@@ -1,8 +1,12 @@
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom"
-
+import { Outlet, Route, Routes } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Photocard } from "../components/photocards/Photocard"
 import { NavBar } from "../components/nav/NavBar"
+import { Photocards } from "../components/photocards/Photocards"
+import { UserPhotocards } from "../components/photocards/UserPhotocards"
+import { ArtistList } from "../components/artists/ArtistList"
+import { ArtistDetails } from "../components/artists/ArtistDetails"
+import { NewArtistForm } from "../components/artists/NewArtistForm"
+import { NewPhotocardForm } from "../components/photocards/NewPhotocardForm"
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({})
@@ -15,8 +19,7 @@ export const ApplicationViews = () => {
   }, [])
 
   return (
-   
-      <Routes>
+    <Routes>
       <Route
         path="/"
         element={
@@ -26,11 +29,22 @@ export const ApplicationViews = () => {
           </>
         }
       >
-        <Route index element={<Photocard />} />
-        <Route path="photocards" element={<Photocard />}/>
+        <Route index element={<Photocards currentUser={currentUser} />} />
+        <Route
+          path="photocards"
+          element={<Photocards currentUser={currentUser} />}
+        />
+        <Route
+          path="myPhotocards"
+          element={<UserPhotocards currentUser={currentUser} />}
+        />
+        <Route path="artists">
+          <Route index element={<ArtistList />} />
+          {/* <Route path=":artistId" element={<ArtistDetails />} /> */}
+        </Route>
+        <Route path="newArtist" element={<NewArtistForm />} />
+        <Route path="newPhotocard" element={<NewPhotocardForm />} />
       </Route>
-
-      </Routes>
-
+    </Routes>
   )
 }

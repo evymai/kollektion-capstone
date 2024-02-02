@@ -1,4 +1,50 @@
-.photocard-container img {
-    max-width: 200px;
-    max-height: 200px;
+
+.photocard-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: left;
+    margin: 20px;
 }
+
+.photocard-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    width: 15%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(54, 54, 54, 0.303);
+}
+
+.photocard-card img {
+    max-width: 100px;
+    border-radius: 10px;
+}
+
+.photocard-name{
+    padding-top: 10px;
+}
+
+.icon {
+    padding-top: 10px;
+}
+
+.photocard-card .icon:hover i {
+    display: none;
+}
+
+  .photocard-card .icon i#hoverState{
+    display: none;
+}
+.photocard-card .icon:hover i#hoverState  {
+    display: inline-block; /* Display the opposite icon on hover */
+    
+  }
+
+  .photocard-card .icon:hover i {
+    display: none;
+  }
