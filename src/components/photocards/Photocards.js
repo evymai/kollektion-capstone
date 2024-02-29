@@ -7,24 +7,43 @@ import {
   getUserPhotocards,
 } from "../../services/photocardService"
 import { useNavigate } from "react-router-dom"
+import { getAllArtists } from "../../services/artistService"
 
 export const Photocards = ({ currentUser }) => {
   const [allPhotocards, setAllPhotocards] = useState([])
   const [userPhotocards, setUserPhotocards] = useState([])
+  const [artistSelection, setArtistSelection] = useState(0)
+  const [allArtists, setAllArtist] = useState([])
+  const [filteredPcs, setFilteredPcs] = useState([])
+
   const navigate = useNavigate()
 
-  const render = () => {
-    getUserPhotocards().then((userPcsArr) => {
+  const render = async () => {
+    await getUserPhotocards().then((userPcsArr) => {
       setUserPhotocards(userPcsArr)
+    })
+    getAllPhotocards().then((photocardsArr) => {
+      setAllPhotocards(photocardsArr)
     })
   }
 
   useEffect(() => {
     render()
-    getAllPhotocards().then((photocardsArr) => {
-      setAllPhotocards(photocardsArr)
+    getAllArtists().then((artistArr) => {
+      setAllArtist(artistArr)
     })
   }, [])
+
+  useEffect(() => {
+    if (parseInt(artistSelection) !== 0) {
+      const artistPcs = allPhotocards.filter(
+        (pc) => parseInt(pc.artistId) === parseInt(artistSelection)
+      )
+      setFilteredPcs(artistPcs)
+    } else {
+      setFilteredPcs(allPhotocards)
+    }
+  }, [allPhotocards, artistSelection])
 
   const handleRemoveFromCollection = async (photocardId) => {
     const matchingUserPhotocard = userPhotocards.find(
@@ -47,20 +66,48 @@ export const Photocards = ({ currentUser }) => {
     render()
   }
 
+  const handleDropdownChange = (event) => {
+    setArtistSelection(event.target.value)
+  }
+
   return (
     <div className="photocard-view">
       <h2>Photocards</h2>
       <div className="options-container">
-        <button
-          onClick={() => {
-            navigate(`/newPhotocard`)
-          }}
-        >
-          Add New Photocard
-        </button>
+        <div className="dropdown-container">
+          <select
+            id="artist-dropdown"
+            className="dropdown"
+            onChange={handleDropdownChange}
+          >
+            <option className="artist-name" value="0">
+              Sort by Artist
+            </option>
+            {allArtists.map((artistObj) => {
+              return (
+                <option
+                  className="artist"
+                  value={artistObj.id}
+                  key={artistObj.id}
+                >
+                  {artistObj.name}
+                </option>
+              )
+            })}
+          </select>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              navigate(`/newPhotocard`)
+            }}
+          >
+            New PC
+          </button>
+        </div>
       </div>
       <div className="photocard-container">
-        {allPhotocards.map((photocard) => {
+        {filteredPcs.map((photocard) => {
           const isInUserCollection = userPhotocards.some(
             (userPc) =>
               userPc.photocardId === photocard.id &&

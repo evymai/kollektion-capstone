@@ -26,24 +26,24 @@ export const ArtistList = () => {
             navigate(`/newArtist`)
           }}
         >
-          Add New Artist
+          New Artist
         </button>
       </div>
       <div className="artist-container">
         {allArtists.map((artist) => {
           return (
-            // <Link to={`/artists/${artist.id}`}>
-            <div className="artist-card" key={artist.id}>
-              <div className="artist-img-container">
-                <img
-                  src={artist.image}
-                  alt={`${artist.name} Photocard`}
-                  key={artist.id}
-                />
+            <Link className="artist-link" to={`/artists/${artist.id}`}>
+              <div className="artist-card" key={artist.id}>
+                <div className="artist-img-container">
+                  <img
+                    src={artist.image}
+                    alt={`${artist.name} Photocard`}
+                    key={artist.id}
+                  />
+                </div>
+                <div>{artist.name}</div>
               </div>
-              <div>{artist.name}</div>
-            </div>
-            // </Link>
+            </Link>
           )
         })}
       </div>

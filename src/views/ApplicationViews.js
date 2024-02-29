@@ -7,6 +7,7 @@ import { ArtistList } from "../components/artists/ArtistList"
 import { ArtistDetails } from "../components/artists/ArtistDetails"
 import { NewArtistForm } from "../components/artists/NewArtistForm"
 import { NewPhotocardForm } from "../components/photocards/NewPhotocardForm"
+import { UpdateUser } from "../components/users/UpdateUser"
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({})
@@ -40,10 +41,14 @@ export const ApplicationViews = () => {
         />
         <Route path="artists">
           <Route index element={<ArtistList />} />
-          {/* <Route path=":artistId" element={<ArtistDetails />} /> */}
+          <Route
+            path=":artistId"
+            element={<ArtistDetails currentUser={currentUser} />}
+          />
         </Route>
         <Route path="newArtist" element={<NewArtistForm />} />
         <Route path="newPhotocard" element={<NewPhotocardForm />} />
+        <Route path="editProfile" element={<UpdateUser currentUser={currentUser}/>} />
       </Route>
     </Routes>
   )

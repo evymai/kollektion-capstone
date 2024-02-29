@@ -13,3 +13,19 @@ export const createUser = async (newUser) => {
     body: JSON.stringify(newUser),
   })
 }
+
+export const getUserById = (userId) => {
+  return fetch(`http://localhost:8088/users/${userId}`).then(
+    (response) => response.json()
+  )
+}
+
+export const editUserInfo = (user) => {
+  return fetch(`http://localhost:8088/users/${user.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+}

@@ -5,6 +5,8 @@ import "./ArtistForm.css"
 export const NewArtistForm = () => {
   const [artistName, setArtistName] = useState("")
   const [imageFile, setImageFile] = useState("")
+  const [artistBirthday, setArtistBirthday] = useState("")
+
   const navigate = useNavigate()
 
   const handleArtistChange = (event) => {
@@ -14,13 +16,14 @@ export const NewArtistForm = () => {
     setImageFile(event.target.files[0])
   }
   const handleAddArtist = async () => {
-    if (artistName && imageFile) {
+    if (artistName && imageFile && artistBirthday) {
       const newArtist = {
         name: artistName,
         image: `/images/artists/${imageFile.name}`,
+        birthday: artistBirthday,
       }
+      navigate(`/artists`)
       await addNewArtist(newArtist)
-      navigate("/artists")
     } else {
       alert("Please fill in all fields before adding an artist.")
     }
@@ -43,7 +46,25 @@ export const NewArtistForm = () => {
             onChange={handleArtistChange}
           />
         </div>
-        <button onClick={handleAddArtist}>Add New Artist</button>
+        <div>
+          <label>Birthday: </label>
+          <input
+            className="post-date-input"
+            type="date"
+            value={artistBirthday}
+            min="1960-01-01"
+            max="2024-01-01"
+            onChange={(event) => {
+              let artistBday = event.target.value
+              setArtistBirthday(artistBday)
+              console.log(`on change: ${artistBday}`)
+            }}
+          />
+        </div>
+
+        <button className="artist-form-button" onClick={handleAddArtist}>
+          Add New Artist
+        </button>
       </form>
     </div>
   )

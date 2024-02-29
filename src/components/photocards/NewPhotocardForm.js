@@ -33,8 +33,9 @@ export const NewPhotocardForm = () => {
       const newPc = {
         name: photocardName,
         image: `/images/photocards/${imageFile.name}`,
-        artistId: chosenArtistId,
+        artistId: parseInt(chosenArtistId),
       }
+        
       addNewPhotocard(newPc)
       navigate("/photocards")
     } else {
@@ -47,22 +48,24 @@ export const NewPhotocardForm = () => {
       <h2>New Photocard</h2>
 
       <form>
-        <select
-          id="topic-dropdown"
-          className="dropdown"
-          onChange={handleArtistChange}
-        >
-          <option className="artist" value="0">
-            Select an artist...
-          </option>
-          {allArtists.map((artist) => {
-            return (
-              <option className="artist" value={artist.id} key={artist.id}>
-                {artist.name}
-              </option>
-            )
-          })}
-        </select>
+        <div className="dropdown-container">
+          <select
+            id="artist-dropdown"
+            className="dropdown"
+            onChange={handleArtistChange}
+          >
+            <option className="artist" value="0">
+              Select an artist...
+            </option>
+            {allArtists.map((artist) => {
+              return (
+                <option className="artist" value={artist.id} key={artist.id}>
+                  {artist.name}
+                </option>
+              )
+            })}
+          </select>
+        </div>
         <div>
           <input type="file" name="filename" onChange={handleFileChange} />
         </div>
@@ -75,7 +78,7 @@ export const NewPhotocardForm = () => {
             onChange={handleNameChange}
           />
         </div>
-        <button onClick={handleAddPhotocard}>Add New Photocard</button>
+        <button className="photocard-form-button" onClick={handleAddPhotocard}>Add New Photocard</button>
       </form>
     </div>
   )

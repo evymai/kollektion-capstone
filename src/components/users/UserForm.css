@@ -1,0 +1,10 @@
+label {
+    font-size: smaller;
+}
+
+input[type="text"], [type="date"] {
+    border-color: rgba(0, 0, 0, 0.574);
+    border-radius: 5px;
+    padding: 2px;
+    color: rgba(0, 0, 0, 0.574);
+}

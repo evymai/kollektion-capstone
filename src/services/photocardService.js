@@ -4,6 +4,12 @@ export const getAllPhotocards = async () => {
   )
 }
 
+export const getPhotocardsByArtistId = async (artistId) => {
+  return await fetch(`http://localhost:8088/photocards?artistId=${artistId}`).then(
+    (response) => response.json()
+  )
+}
+
 export const getUserPhotocards = async () => {
   return await fetch(
     `http://localhost:8088/userPhotocards?_expand=photocard`
