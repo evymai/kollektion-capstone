@@ -1,0 +1,33 @@
+.artist-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.artist-form-container form{
+    width: 70%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+label {
+    font-size: smaller;
+}
+
+input[type="text"], [type="date"] {
+    border-color: rgba(0, 0, 0, 0.574);
+    border-radius: 5px;
+    padding: 2px;
+    color: rgba(0, 0, 0, 0.574);
+}
+
+.artist-form-button {
+    margin-top: 20px;
+    width: 120px;
+    margin-bottom: 10px;
+}
